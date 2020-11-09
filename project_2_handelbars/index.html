@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Selouse</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+    <div id="search">
+        <input type="text" placeholder="Address" id="addr-input">
+        <input type="number" class="min price" placeholder="Min. Price" id="min-p-input">
+        <input type="number" class="max price" placeholder="Max Price" id="max-p-input">
+        <input type="number" class="min room" placeholder="Min. Rooms" id="min-r-input">
+        <input type="number" class="max room" placeholder="Max Rooms" id="max-r-input">
+
+        <div class="check-group">
+            <input class="form-radio" type="checkbox" name="immediate" id="immed-y">
+            <label for="immediate">Immediate</label>
+        </div>
+        <div class="check-group">
+            <input class="form-radio" type="checkbox" name="parking" id="park-y">
+            <label for="parking">Parking</label>
+        </div>
+
+        <button>Find Apartments</button>
+    </div>
+
+    <hr>
+
+    <div id="results"></div>
+
+    <!-- Your Code Here -->
+    <script id = "apartment" type = "text/x-hendlebars-template">
+        {{#each apartments}} 
+            <div class = "result">    
+                <img src = "{{img}}"/>
+                <label for = "{{name}}-addr" class = "l-addr">address:</label>
+                <p class = "address" id = "{{name}}-addr">{{address}}</p>
+                <label for = "{{name}}-pr" class = "l-price">price:</label>
+                <p class = "price" id = "{{name}}-pr">{{price}}</p>
+                <label for = "{{name}}-r" class = "l-rooms">rooms:</label>
+                <p class = "rooms" id = "{{name}}-r">{{rooms}}</p>
+                <label for = "{{name}}-park" class = "l-park">parking:</label>
+                {{#if parking}}
+                <i class="fas fa-parking" id = "{{name}}-park"></i>
+                {{else}}
+                <i class="fas fa-times" id = "{{name}}-park"></i>
+                {{/if}}
+                {{#if immediate}}
+                <label for = "{{name}}-con" class = "l-immediate">immediate!</label>
+                <p class = "immediate" id = "{{name}}-con">{{contactDetails.name}}, e-mail:{{contactDetails.email}}</p>
+                {{/if}}
+            </div>
+        {{/each}}
+        {{#unless apartments}} 
+                <p class = "no-match">No matching results</p>
+        {{/unless}}
+
+    </script>
+
+    <!-- You should start doing handlebar stuff here -->
+    <!-- Your Code Here -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <script src="apt-data.js"></script>
+    <script src="apt-filter.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
