@@ -10,7 +10,7 @@ class Employee {
     }
     work(office){
         for (let i = 0; i < 10; i++) {
-            const document = new Document;
+            const document = new Document(this.name);
             office.documents.push(document);
         }
     }
